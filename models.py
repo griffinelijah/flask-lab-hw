@@ -1,12 +1,12 @@
 import datetime
 from peewee import *
 
-DATABASE = SqliteDatabase('students.sqlite')
+DATABASE = SqliteDatabase('plants.sqlite')
 
-class Student(Model):
+class Plant(Model):
 	name = CharField()
-	home_town = CharField()
-	age = IntegerField()
+	alias = CharField()
+	origin = CharField()
 	created_at = DateTimeField(default=datetime.datetime.now)
 
 	class Meta:
@@ -14,6 +14,6 @@ class Student(Model):
 
 def initialize():
 	DATABASE.connect()
-	DATABASE.create_tables([STUDENT], safe=True)
+	DATABASE.create_tables([PLANT], safe=True)
 	print('TABLES CREATED')
-	DATABASE.close()
+	DATABASE.close()	
