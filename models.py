@@ -14,6 +14,6 @@ class Plant(Model):
 
 def initialize():
 	DATABASE.connect()
-	DATABASE.create_tables([PLANT], safe=True)
+	DATABASE.create_tables([Plant], safe=True)
 	print('TABLES CREATED')
 	DATABASE.close()	

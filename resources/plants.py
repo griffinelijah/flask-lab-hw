@@ -13,5 +13,5 @@ def get_all_plants():
 		plants = [model_to_dict(plant) for plant in models.Plant.select()]
 		print(plants)
 		return jsonify(data=plants, status={'code': 200, 'message': 'success'})
-	except models.DoesNotExist;
+	except models.DoesNotExist:
 		return jsonify(data={}, status={'code': 401, 'message': 'Error getting the resources'})
