@@ -16,4 +16,5 @@ def initialize():
 	DATABASE.connect()
 	DATABASE.create_tables([Plant], safe=True)
 	print('TABLES CREATED')
-	DATABASE.close()	
+	DATABASE.close()
+

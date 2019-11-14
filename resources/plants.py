@@ -15,3 +15,41 @@ def get_all_plants():
 		return jsonify(data=plants, status={'code': 200, 'message': 'success'})
 	except models.DoesNotExist:
 		return jsonify(data={}, status={'code': 401, 'message': 'Error getting the resources'})
+
+#define route to create a plant
+@plant.route('/', methods=['POST'])
+def create_plant():
+	try:
+		#this will get contain the info to create the plant
+		payload = request.get_json()
+		#**payload is the spread operator containing the new plants info
+		plant = models.Plant.create(**payload)
+		#turn the plant model into a dictionary 
+		plant_dict = model_to_dict(plant)
+		#return the jsonified object and a status code
+		return jsonify(data=plant_dict, status={'code': 200, 'message': 'success'})
+	except models.DoesNotExist:
+		return jsonify(data={}, status={'code': 401, 'message': 'error getting the resources'})
+
+#define route to update a plant by passing it's id through to the function
+@plant.route('/<id>', methods=['PUT'])
+def update_plant(id):
+	try:
+		payload = request.get_json()
+		#query for specific plant that matches id being passed down and update it with new info from the payload
+		query = models.Plant.update(**payload).where(models.Plant.id == id)
+		query.execute()
+
+		return jsonify(data=model_to_dict(models.Plant.get_by_id(id)), status={'code': 200, 'message': 'success'})
+	except models.DoesNotExist:
+		return jsonify(data={}, status={'code': 401, 'message': 'error getting the resources'})
+
+
+
+
+
+
+
+
+
+
