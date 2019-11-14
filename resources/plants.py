@@ -26,10 +26,21 @@ def create_plant():
 		plant = models.Plant.create(**payload)
 		#turn the plant model into a dictionary 
 		plant_dict = model_to_dict(plant)
-		#return the jsonified object and a status code
+		#return the jsonified object and a status code indicating sucess or error
 		return jsonify(data=plant_dict, status={'code': 200, 'message': 'success'})
 	except models.DoesNotExist:
 		return jsonify(data={}, status={'code': 401, 'message': 'error getting the resources'})
+
+#show a single plant by id
+@plant.route('<id>', methods=['GET'])
+#retrieve plant by id that is being passed down 
+def get_one_plant(id):
+	try:#if successful display found plants informtion
+		plant = models.Plant.get_by_id(id)
+		return jsonify(data=model_to_dict(plant), status={'code': 200, 'message': 'success'})
+		#if unsuccessful return error message and no info
+	except models.DoesNotExist:
+		return jsonify(data={}, status={'code': 401, 'message': 'error getting thhe resources'})
 
 #define route to update a plant by passing it's id through to the function
 @plant.route('/<id>', methods=['PUT'])
