@@ -55,6 +55,13 @@ def update_plant(id):
 	except models.DoesNotExist:
 		return jsonify(data={}, status={'code': 401, 'message': 'error getting the resources'})
 
+#define route to delete plant by id
+@plant.route('/<id>', methods=['DELETE'])
+def delete_plant(id):
+		query = models.Plant.delete().where(models.Plant.id == id)
+		query.execute()
+		return jsonify(data='resource was successfully delete', status={'message': 'resource was successfully deleted'})
+	
 
 
 
