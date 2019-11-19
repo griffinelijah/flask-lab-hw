@@ -43,7 +43,7 @@ def login():
 			login_user(user)
 			#delete pw from dict before returning
 			del user_dict['password']
-			return jsonify(data=user_dict, status={'code': 200, 'message': 'succesfully loggined in {}'.format(user_dict['email'])}), 200
+			return jsonify(data=user_dict, status={'code': 200, 'message': 'succesfully logged in {}'.format(user_dict['email'])}), 200
 		else:
 			#if pw does not match, print internal log and return invlaid message
 			print('password no good')

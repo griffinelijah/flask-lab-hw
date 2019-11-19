@@ -17,6 +17,7 @@ class Plant(Model):
 	name = CharField()
 	alias = CharField()
 	origin = CharField()
+	owner = ForeignKeyField(User, backref='plants')
 	created_at = DateTimeField(default=datetime.datetime.now)
 
 	class Meta:
