@@ -114,7 +114,7 @@ def update_plant(id):
 		return jsonify(data=model_to_dict(plant), status={'code': 200, 'message': 'Resource updated successfully'}), 200
 
 #define route to delete plant by id
-@plant.route('/<id>', methods=['DELETE'])
+@plant.route('/<id>', methods=['Delete'])
 @login_required
 def delete_plant(id):
 	plant_to_delete = models.Plant.get_by_id(id)
