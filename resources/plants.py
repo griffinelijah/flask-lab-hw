@@ -42,7 +42,7 @@ def create_plant():
 				name=payload['name'],
 				alias=payload['alias'],
 				origin=payload['origin'],
-				owner_id=current_user.id
+				owner=current_user.id
 		)
 		#turn the plant model into a dictionary
 		print(model_to_dict(plant), 'model to dict') 
@@ -127,6 +127,10 @@ def delete_plant(id):
 	else:
 		plant_name = plant_to_delete.name
 		plant_to_delete.delete_instance()
+		return jsonify(data='Resource successfully deleted', status={
+			'code': 200,
+			'message': '{} deleted successfully'.format(plant_name)
+			})
 
 	
 
